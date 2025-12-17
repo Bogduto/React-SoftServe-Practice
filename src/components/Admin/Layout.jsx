@@ -10,7 +10,7 @@ const AdminLayout = () => {
             <Link to="/admin/panel">Головна</Link>
           </li>
           <li>
-            <Link to="/admin/movie/add">Додати фільм</Link>
+            <Link data-testid="add-movie" to="/admin/movie/add">Додати фільм</Link>
           </li>
         </ul>
       </nav>

@@ -69,12 +69,15 @@ const SignInPage = () => {
       <h1 className={styles.title}>Login</h1>
 
       {errors.general && (
-        <p className={styles.field__error}>{errors.general.message}</p>
+        <p data-testid="general-error" className={styles.field__error}>
+          {errors.general.message}
+        </p>
       )}
 
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.field}>
           <input
+            data-testid="username"
             id="usernameOrEmail"
             className={styles.field__input}
             type="text"
@@ -90,6 +93,7 @@ const SignInPage = () => {
 
         <div className={styles.field}>
           <input
+            data-testid="password"
             id="password"
             className={styles.field__input}
             placeholder="Your Password"
@@ -101,13 +105,17 @@ const SignInPage = () => {
           )}
         </div>
 
-        <button className={styles.btn__submit} type="submit">
+        <button
+          data-testid="sign-in-button"
+          className={styles.btn__submit}
+          type="submit"
+        >
           Sign in
         </button>
       </form>
 
       <div className={styles.text}>
-        Don’t have an account? <a href="/signUp">Sign up</a>
+        Don’t have an account? <a data-testid="sign-up-href" href="/signUp">Sign up</a>
       </div>
     </div>
   );

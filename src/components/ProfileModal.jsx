@@ -119,13 +119,15 @@ const ProfileModal = ({ isOpen, onClose }) => {
               </button>
               {role === "admin" && (
                 <button
+                  data-testid="admin-panel-button-link"
+                  type="button"
                   className={styles.actionButton}
                   onClick={() => {
                     onClose();
                     navigate("/admin/panel");
                   }}
                 >
-                  🛠️ Admin panel
+                  Admin panel
                 </button>
               )}
             </div>

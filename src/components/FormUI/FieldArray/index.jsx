@@ -30,13 +30,14 @@ const FieldArray = ({ error, items = [], onAdd, onRemove }) => {
 
       <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
         <input
+          data-testid="genre-field"
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="Genre"
           className={styles.field__input}
           style={{ flexGrow: 1 }}
         />
-        <Button type="button" onClick={handleAddClick} style={{ height: "33px", width: "150px" }}>
+        <Button data-testid="genre-add-button" type="button" onClick={handleAddClick} style={{ height: "33px", width: "150px" }}>
           Додати жанр
         </Button>
       </div>

@@ -86,7 +86,7 @@ export default function MoviePage() {
     description,
     trailerLink,
   } = movie;
-
+  
   const ytId = new URL(trailerLink).searchParams.get("v");
   const nonEmpty = sessionsByDate.filter((g) => g.times.length > 0);
 

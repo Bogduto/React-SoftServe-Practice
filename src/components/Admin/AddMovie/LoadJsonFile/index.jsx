@@ -39,7 +39,7 @@ const LoadJsonFile = () => {
   const [isSuccess, setIsSuccess] = useState(null); // success, fail, loading
   const [file, setFile] = useState(null);
 
-  const {insertMany} = MovieApi();
+  const { insertMany } = MovieApi();
   const handleChangeFile = (e) => {
     let file = e.target.files;
 
@@ -51,7 +51,6 @@ const LoadJsonFile = () => {
           setFile(json);
         } catch (error) {
           setIsSuccess("fail");
-          console.log(error);
         }
       };
       reader.readAsText(file[0]);
@@ -65,17 +64,12 @@ const LoadJsonFile = () => {
     setIsSuccess("loading");
     // перед відправкой показати повідомлення, і в повідомленні можна буде переглянуть те, що було додано
     // Може якщо буде час зробити перевірку
-    console.log(file);
-
+    
     if (file) {
       insertMany(file);
       setIsSuccess("success");
     }
   };
-
-  useEffect(() => {
-    console.log(file);
-  }, [file]);
 
   return (
     <div className={styles.box}>
@@ -100,6 +94,7 @@ const LoadJsonFile = () => {
           onChange={handleChangeFile}
           id="choosen"
           accept=".json"
+          data-testid="file-input"
         />
       </div>
 

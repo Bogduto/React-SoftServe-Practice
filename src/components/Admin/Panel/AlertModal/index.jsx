@@ -10,7 +10,7 @@ const AlertModal = ({
 }) => {
   return (
     <ModalWrapper handleClose={handleRefuse}>
-      <div className={styles.box}>
+      <div data-testid="delete-alertbox-modal" className={styles.box}>
         <div className={styles.text__wrapper}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -34,6 +34,7 @@ const AlertModal = ({
           </button>
 
           <button
+            data-testid="delete-accept-action"
             className={`${styles.btn} ${styles.accept}`}
             onClick={handleAccept}
             type="button"

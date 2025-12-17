@@ -45,7 +45,11 @@ const IsSigned = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.col}>
-        <a className={styles.col__link} href="/signIn">
+        <a
+          data-testid="sign-in-link"
+          className={styles.col__link}
+          href="/signIn"
+        >
           <div className={styles.col__icon}>
             <img src="/icons/user_icon.svg" alt="user" />
           </div>

@@ -38,6 +38,7 @@ const MethodChoose = () => {
               Завантажити дані
             </button>
             <button
+              data-testid="fill-self-action"
               className={`${styles.btn}`}
               onClick={() => handleChangeMethod("self")}
               type="button"

@@ -88,7 +88,9 @@ const AuthProvider = ({ children }) => {
 
       const { error } = await supabase
         .from("Profiles")
-        .insert([{ user_id: signUpData.user.id, username }]);
+        .insert([
+          { user_id: signUpData.user.id, username, role: "guest", email },
+        ]);
 
       if (error) {
         console.log("profile: ", error);
@@ -121,7 +123,6 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-
     const getSession = async () => {
       const {
         data: { session },

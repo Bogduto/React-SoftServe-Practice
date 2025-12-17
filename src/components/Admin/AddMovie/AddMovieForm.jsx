@@ -14,7 +14,7 @@ import {
   SubmitButton,
 } from "../../FormUI/index";
 import { MovieForm } from "../Forms/index";
-
+import { supabase } from "../../../supabaseClient";
 const AddMovieForm = () => {
   const navigate = useNavigate();
 
@@ -34,11 +34,17 @@ const AddMovieForm = () => {
 
   const posterWatcher = watch("poster");
   const genres = watch("genres");
-  console.log(getValues());
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     try {
       console.log("submit", e);
+
+      const { data, error } = await supabase.from("Movies").insert(e).select();
+
+      if (error) {
+        console.error("Error inserting movie:", error);
+      }
+      navigate("/admin/panel")
     } catch (error) {
       console.log(error);
     }
@@ -63,6 +69,7 @@ const AddMovieForm = () => {
       <FieldInput
         error={errors.title}
         // input props
+        data-testid="poster-test-id"
         id="poster"
         type="text"
         placeholder="Посилання на постер фільму"
@@ -71,6 +78,7 @@ const AddMovieForm = () => {
       <FieldInput
         error={errors.title}
         // input props
+        data-testid="title-test-id"
         id="title"
         type="text"
         placeholder="Назва фільму"
@@ -79,6 +87,7 @@ const AddMovieForm = () => {
       <FieldTextarea
         error={errors.description}
         // input props
+        data-testid="description-test-id"
         id="description"
         type="text"
         placeholder="Опис фільму"
@@ -86,6 +95,7 @@ const AddMovieForm = () => {
       />
       <FieldInput
         error={errors.trailerLink}
+        data-testid="trailerLink-test-id"
         // input props
         id="trailerLink"
         type="text"
@@ -95,6 +105,7 @@ const AddMovieForm = () => {
       <FieldInput
         error={errors.releaseDate}
         // input props
+        data-testid="releaseDate-test-id"
         id="releaseDate"
         type="text"
         {...register("releaseDate", { valueAsDate: true })}
@@ -102,6 +113,7 @@ const AddMovieForm = () => {
       <FieldInput
         error={errors.country}
         // input props
+        data-testid="country-test-id"
         id="country"
         type="text"
         placeholder="Країна"
@@ -110,6 +122,7 @@ const AddMovieForm = () => {
       <FieldInput
         error={errors.duration}
         // input props
+        data-testid="duration-test-id"
         id="duration"
         type="text"
         placeholder="Тривалість фільму"
@@ -118,6 +131,7 @@ const AddMovieForm = () => {
       <FieldInput
         error={errors.ageRestriction}
         // input props
+        data-testid="ageRestriction-test-id"
         id="ageRestriction"
         type="text"
         placeholder="Вік для перегляду"
@@ -134,6 +148,7 @@ const AddMovieForm = () => {
           error={errors.ratings?.imdb}
           // input props
           id="ratings.imdb"
+          data-testid="imdb-test-id"
           type="text"
           placeholder="Оцінка на imdb"
           style={{
@@ -144,7 +159,8 @@ const AddMovieForm = () => {
         <FieldInput
           error={errors.ratings?.rottenTomatoes}
           // input props
-          id="rating.rottenTomatoes"
+          data-testid="rottenTomatoes-test-id"
+          id="ratings.rottenTomatoes"
           type="text"
           placeholder="Оцінка на Rotten Tomatoes"
           style={{

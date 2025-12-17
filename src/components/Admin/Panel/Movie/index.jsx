@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import styles from "./movie.module.css";
 
 const Movie = ({ data, isEditable = true, deleteAction }) => {
-
   return (
-    <div className={styles.movie}>
+    <div className={styles.movie} data-testid={`movie-${data.id}`}>
       {isEditable && (
         <div className={styles.block}>
-          <button type="button" onClick={deleteAction} className={`${styles.btn} ${styles.delete}`}>
+          <button data-testid="delete-action-button" type="button" onClick={deleteAction} className={`${styles.btn} ${styles.delete}`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -26,7 +25,7 @@ const Movie = ({ data, isEditable = true, deleteAction }) => {
         <img className={styles.image} src={data.poster} alt={data.title} />
       </Link>
 
-      <h2 className={styles.title}>{data.title}</h2>
+      <h2 data-testid={`movie-title-${data.title}`} className={styles.title}>{data.title}</h2>
       <p className={styles.info}>
         {data.duration} {data.ageRestriction}
       </p>

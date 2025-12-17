@@ -85,7 +85,7 @@ const EditMovieForm = ({ data, movieId }) => {
         handleSubmit={handleMovieSubmit(onSubmitMovie)}
       >
         <FieldInput
-          error={errors.title}
+          error={errors.poster}
           // input props
           id="poster"
           type="text"
@@ -155,8 +155,9 @@ const EditMovieForm = ({ data, movieId }) => {
         />
 
         <FieldRow>
+          
           <FieldInput
-            error={errors.rating}
+            error={errors.ratings?.imdb}
             // input props
             id="rating.imdb"
             type="text"
@@ -167,7 +168,7 @@ const EditMovieForm = ({ data, movieId }) => {
             {...register("ratings.imdb")}
           />
           <FieldInput
-            error={errors.rating}
+            error={errors.ratings?.rottenTomatoes}
             // input props
             id="rating.rottenTomatoes"
             type="text"
