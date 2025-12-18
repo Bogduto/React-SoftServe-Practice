@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import styles from "../../styles/IsSigned.module.css";
+import styles from "../../styles/isSigned.module.css";
 import ProfileModal from "../ProfileModal"; // імпорт модалки
 
 const IsSigned = () => {

@@ -4,7 +4,7 @@ import {
   getFullFavorites,
   removeFavoriteFromLocalStorage,
 } from "../utils/localStorageFavoriteUtils";
-import styles from "../styles/Favored.module.css";
+import styles from "../styles/favored.module.css";
 
 function FavoredPage() {
   const [movies, setMovies] = useState([]);

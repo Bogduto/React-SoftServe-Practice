@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import MovieApi from "../../../../api/Movies";
-import styles from "./LoadJsonFile.module.css";
+import styles from "./loadJsonFile.module.css";
 
 const SendingStatus = (status) => {
   switch (status) {
