@@ -31,5 +31,10 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
+      - name: Run app in dev mode
+        run: |
+          npm run dev &
+          npx wait-on http://localhost:5173
+
       - name: Run Cucumber e2e tests
         run: npx cucumber-js
