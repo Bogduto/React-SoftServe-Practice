@@ -31,10 +31,11 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run app in dev mode
+      - name: Start Vite dev server and wait for readiness
         run: |
           npm run dev &
-          npx wait-on http://localhost:5173
-
+          npx wait-on http://localhost:5173 --timeout 60000
+          echo "Server responded, waiting extra time for React to load..."
+          sleep 20      
       - name: Run Cucumber e2e tests
         run: npm run test:e2e
