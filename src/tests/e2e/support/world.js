@@ -1,4 +1,4 @@
-import { setWorldConstructor, BeforeAll, AfterAll, Before, After } from "@cucumber/cucumber";
+import { setWorldConstructor, BeforeAll, AfterAll, Before, After, setDefaultTimeout } from "@cucumber/cucumber";
 import { chromium } from "playwright";
 
 let browser;
@@ -14,10 +14,12 @@ class CustomWorld {
   }
 }
 
+setDefaultTimeout(60 * 1000);
+
 setWorldConstructor(CustomWorld);
 
 BeforeAll(async () => {
-  browser = await chromium.launch({ headless: true, slowMo: 250 });
+  browser = await chromium.launch({ headless: true });
 });
 
 AfterAll(async () => {
