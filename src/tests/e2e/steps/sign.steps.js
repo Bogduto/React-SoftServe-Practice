@@ -20,11 +20,19 @@ Given("I am on the sign up page", { timeout: 30 * 1000 }, async function () {
 /* =======================
    SIGN IN
 ======================= */
- 
-When("I fill in the sign in form with valid credentials", { timeout: 30 * 1000 },  async function () {
-  await this.page.getByTestId("username").fill(username_guest);
-  await this.page.getByTestId("password").fill(password_guest);
-});
+
+When(
+  "I fill in the sign in form with valid credentials",
+  { timeout: 30 * 1000 },
+  async function () {
+    await this.page.goto(`${endpoint}/signIn`, {
+      waitUntil: "domcontentloaded",
+    });
+
+    await this.page.getByTestId("username").fill(username_guest);
+    await this.page.getByTestId("password").fill(password_guest);
+  }
+);
 
 When("I click the sign in button", async function () {
   await this.page.getByTestId("sign-in-button").click();
@@ -38,12 +46,19 @@ Then("I am successfully signed in", async function () {
    SIGN UP
 ======================= */
 
-When("I fill in the sign up form with valid data", { timeout: 30 * 1000 }, async function () {
-  await this.page.getByTestId("email").fill(mock_email_guest);
-  await this.page.getByTestId("username").fill(mock_username_guest);
-  await this.page.getByTestId("password").fill(mock_password_guest);
-  await this.page.getByTestId("confirmPassword").fill(mock_password_guest);
-});
+When(
+  "I fill in the sign up form with valid data",
+  { timeout: 30 * 1000 },
+  async function () {
+    await this.page.goto(`${endpoint}/signUp`, {
+      waitUntil: "domcontentloaded",
+    });
+    await this.page.getByTestId("email").fill(mock_email_guest);
+    await this.page.getByTestId("username").fill(mock_username_guest);
+    await this.page.getByTestId("password").fill(mock_password_guest);
+    await this.page.getByTestId("confirmPassword").fill(mock_password_guest);
+  }
+);
 
 When("I click the sign up button", { timeout: 30 * 1000 }, async function () {
   await this.page.getByTestId("sign-up-button").click();

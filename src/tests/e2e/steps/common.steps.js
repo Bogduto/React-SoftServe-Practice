@@ -1,10 +1,10 @@
-import { Given, When } from "@cucumber/cucumber";
-import {
-  password_admin,
-  password_guest,
-  username_admin,
-  username_guest,
-} from "../support/mock.js";
+// import { Given, When } from "@cucumber/cucumber";
+// import {
+//   password_admin,
+//   password_guest,
+//   username_admin,
+//   username_guest,
+// } from "../support/mock.js";
 
 // Given("I am logged in as an admin", { timeout: 30 * 1000 }, async function () {
 //   const page = this.page;
