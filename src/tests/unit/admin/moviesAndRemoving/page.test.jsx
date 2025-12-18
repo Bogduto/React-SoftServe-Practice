@@ -3,16 +3,20 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import MovieApi from "../../../../api/Movies";
 import AdminPanel from "../../../../pages/admin/AdminPanel";
 
-// ---------- Моки ----------
+// Мокаємо API для роботи з фільмами
 jest.mock("../../../../api/Movies");
 
+// Мокаємо компоненти адмін-панелі, щоб тестувати лише логіку AdminPanel
 jest.mock("../../../../components/Admin/Panel/index", () => ({
+  // Спрощений компонент фільму
   Movie: ({ data, deleteAction }) => (
     <div>
       <span>{data.title}</span>
       <button onClick={deleteAction}>Delete</button>
     </div>
   ),
+
+  // Спрощене модальне вікно підтвердження
   AlertModal: ({ handleAccept, handleRefuse }) => (
     <div>
       <button onClick={handleAccept}>Yes</button>
@@ -21,6 +25,7 @@ jest.mock("../../../../components/Admin/Panel/index", () => ({
   ),
 }));
 
+// Мокаємо обгортку модального вікна
 jest.mock(
   "../../../../components/ModalWrapper",
   () =>
@@ -33,19 +38,23 @@ jest.mock(
       )
 );
 
-// ---------- Тесты ----------
 describe("AdminPanel", () => {
+  // Мокові дані фільмів
   const moviesMock = [
     { id: "1", title: "Movie 1" },
     { id: "2", title: "Movie 2" },
   ];
+
+  // Моки методів API
   const deleteOneMock = jest.fn();
   const findAllMock = jest.fn();
 
   beforeEach(() => {
+    // Очищаємо попередні виклики перед кожним тестом
     deleteOneMock.mockClear();
     findAllMock.mockClear();
 
+    // Підміняємо реалізацію MovieApi
     MovieApi.mockReturnValue({
       findAll: findAllMock,
       deleteOne: deleteOneMock,
@@ -53,11 +62,12 @@ describe("AdminPanel", () => {
   });
 
   test("renders movies fetched from API", async () => {
+    // API повертає список фільмів
     findAllMock.mockResolvedValue(moviesMock);
 
     render(<AdminPanel />);
 
-    // Ждём, пока фильмы отобразятся
+    // Очікуємо, поки всі фільми з'являться в DOM
     for (const movie of moviesMock) {
       await waitFor(() => {
         expect(screen.getByText(movie.title)).toBeInTheDocument();
@@ -66,47 +76,54 @@ describe("AdminPanel", () => {
   });
 
   test("opens modal and deletes a movie", async () => {
+    // API повертає фільми та успішно видаляє один
     findAllMock.mockResolvedValue(moviesMock);
     deleteOneMock.mockResolvedValue();
 
     render(<AdminPanel />);
 
-    // Ждём, пока фильмы отобразятся
+    // Чекаємо, поки перший фільм з'явиться
     await waitFor(() => screen.getByText("Movie 1"));
 
-    // Кликаем на delete первого фильма
+    // Натискаємо кнопку Delete для першого фільму
     fireEvent.click(screen.getAllByText("Delete")[0]);
 
-    // Проверяем, что модалка появилась
+    // Перевіряємо, що модальне вікно зʼявилось
     expect(screen.getByText("Yes")).toBeInTheDocument();
     expect(screen.getByText("No")).toBeInTheDocument();
 
-    // Подтверждаем удаление
+    // Підтверджуємо видалення
     fireEvent.click(screen.getByText("Yes"));
 
     await waitFor(() => {
+      // Перевіряємо, що API викликано один раз з правильним id
       expect(deleteOneMock).toHaveBeenCalledTimes(1);
       expect(deleteOneMock).toHaveBeenCalledWith("1");
-      // Проверяем, что фильм удалился из DOM
+
+      // Перевіряємо, що фільм зник з DOM
       expect(screen.queryByText("Movie 1")).not.toBeInTheDocument();
     });
   });
 
   test("closes modal without deleting when refuse is clicked", async () => {
+    // API повертає список фільмів
     findAllMock.mockResolvedValue(moviesMock);
 
     render(<AdminPanel />);
 
+    // Чекаємо появи фільмів
     await waitFor(() => screen.getByText("Movie 1"));
 
+    // Натискаємо Delete
     fireEvent.click(screen.getAllByText("Delete")[0]);
 
+    // Відмовляємося від видалення
     fireEvent.click(screen.getByText("No"));
 
-    // Модальное окно должно исчезнуть
+    // Модальне вікно повинно зникнути
     expect(screen.queryByText("Yes")).not.toBeInTheDocument();
 
-    // deleteOne не вызвался
+    // deleteOne не має викликатись
     expect(deleteOneMock).not.toHaveBeenCalled();
   });
 });
