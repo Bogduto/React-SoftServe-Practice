@@ -1,0 +1,1126 @@
+{
+	"info": {
+		"_postman_id": "e48762e9-7bd1-4071-961c-e43d8c844a26",
+		"name": "soft-serve-supabase http requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23036498"
+	},
+	"item": [
+		{
+			"name": "Movie - UPDATA ONE",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Movie updated successfully\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/update?id=1",
+					"protocol": "https",
+					"host": [
+						"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"update"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/update?id=1",
+							"protocol": "https",
+							"host": [
+								"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"update"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"id\": 1,\n    \"title\": \"Intestellar (update)\",\n    \"status\": \"update\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Movie - GET ALL",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get movies works\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response is array\", () => {",
+							"  const json = pm.response.json();",
+							"  pm.expect(Array.isArray(json)).to.be.true;",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/movies",
+					"protocol": "https",
+					"host": [
+						"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/movies",
+							"protocol": "https",
+							"host": [
+								"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "[\n    {\n        \"title\": \"Inception\",\n        \"description\": \"A skilled thief is given a chance at redemption if he can successfully perform an inception.\",\n        \"duration\": 148,\n        \"created_at\": \"2024-12-01T10:00:00Z\",\n        \"genres\": \"Sci-Fi, Thriller\",\n        \"poster\": \"https://example.com/posters/inception.jpg\",\n        \"trailerLink\": \"https://youtube.com/watch?v=YoHD9XEInc0\",\n        \"releaseDate\": \"2010-07-16T00:00:00Z\",\n        \"country\": \"USA\",\n        \"ageRestriction\": 13,\n        \"ratings\": {\n            \"imdb\": 8.8,\n            \"rottenTomatoes\": 87\n        }\n    },\n    {\n        \"title\": \"The Dark Knight\",\n        \"description\": \"Batman faces the Joker, a criminal mastermind who plunges Gotham into chaos.\",\n        \"duration\": 152,\n        \"created_at\": \"2024-12-02T12:30:00Z\",\n        \"genres\": \"Action, Crime, Drama\",\n        \"poster\": \"https://example.com/posters/dark_knight.jpg\",\n        \"trailerLink\": \"https://youtube.com/watch?v=EXeTwQWrcwY\",\n        \"releaseDate\": \"2008-07-18T00:00:00Z\",\n        \"country\": \"USA\",\n        \"ageRestriction\": 16,\n        \"ratings\": {\n            \"imdb\": 9.0,\n            \"metacritic\": 84\n        }\n    },\n    {\n        \"title\": \"Interstellar\",\n        \"description\": \"A team of explorers travel through a wormhole in space in an attempt to save humanity.\",\n        \"duration\": 169,\n        \"created_at\": \"2024-12-03T09:15:00Z\",\n        \"genres\": \"Sci-Fi, Adventure, Drama\",\n        \"poster\": \"https://example.com/posters/interstellar.jpg\",\n        \"trailerLink\": \"https://youtube.com/watch?v=zSWdZVtXT7E\",\n        \"releaseDate\": \"2014-11-07T00:00:00Z\",\n        \"country\": \"USA\",\n        \"ageRestriction\": 12,\n        \"ratings\": {\n            \"imdb\": 8.7,\n            \"rottenTomatoes\": 73\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Movie - DELETE ONE",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Movie deleted\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access-token",
+						"value": "112",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/delete?id=1",
+					"protocol": "https",
+					"host": [
+						"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "112",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/delete?id=1",
+							"protocol": "https",
+							"host": [
+								"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"message\": \"removed\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Movie - GET ONE",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get movie by id works\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Movie has title field\", () => {",
+							"  pm.expect(pm.response.json()).to.have.property(\"title\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/movie?id=1",
+					"protocol": "https",
+					"host": [
+						"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"movie"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/movie?id=1",
+							"protocol": "https",
+							"host": [
+								"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"movie"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"title\": \"Inception\",\n    \"description\": \"A skilled thief is given a chance at redemption if he can successfully perform an inception.\",\n    \"duration\": 148,\n    \"created_at\": \"2024-12-01T10:00:00Z\",\n    \"genres\": \"Sci-Fi, Thriller\",\n    \"poster\": \"https://example.com/posters/inception.jpg\",\n    \"trailerLink\": \"https://youtube.com/watch?v=YoHD9XEInc0\",\n    \"releaseDate\": \"2010-07-16T00:00:00Z\",\n    \"country\": \"USA\",\n    \"ageRestriction\": 13,\n    \"ratings\": {\n        \"imdb\": 8.8,\n        \"rottenTomatoes\": 87\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Movie - GET ONE (not found)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Movie not found\", () => {",
+							"  pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/movie?id=999",
+					"protocol": "https",
+					"host": [
+						"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"movie"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "999"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/movie?id=999",
+							"protocol": "https",
+							"host": [
+								"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"movie"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "999"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{}"
+				}
+			]
+		},
+		{
+			"name": "Movie - INSERT ONE",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Mock create works\", () => {",
+							"  pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"The Dark Knight\",\r\n    \"description\": \"Batman faces the Joker, a criminal mastermind who plunges Gotham into chaos.\",\r\n    \"duration\": 152,\r\n    \"created_at\": \"2024-12-02T12:30:00Z\",\r\n    \"genres\": \"Action, Crime, Drama\",\r\n    \"poster\": \"https://example.com/posters/dark_knight.jpg\",\r\n    \"trailerLink\": \"https://youtube.com/watch?v=EXeTwQWrcwY\",\r\n    \"releaseDate\": \"2008-07-18T00:00:00Z\",\r\n    \"country\": \"USA\",\r\n    \"ageRestriction\": 16,\r\n    \"ratings\": {\r\n        \"imdb\": 9.0,\r\n        \"metacritic\": 84\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/movie",
+					"protocol": "https",
+					"host": [
+						"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"movie"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"The Dark Knight\",\r\n    \"description\": \"Batman faces the Joker, a criminal mastermind who plunges Gotham into chaos.\",\r\n    \"duration\": 152,\r\n    \"created_at\": \"2024-12-02T12:30:00Z\",\r\n    \"genres\": \"Action, Crime, Drama\",\r\n    \"poster\": \"https://example.com/posters/dark_knight.jpg\",\r\n    \"trailerLink\": \"https://youtube.com/watch?v=EXeTwQWrcwY\",\r\n    \"releaseDate\": \"2008-07-18T00:00:00Z\",\r\n    \"country\": \"USA\",\r\n    \"ageRestriction\": 16,\r\n    \"ratings\": {\r\n        \"imdb\": 9.0,\r\n        \"metacritic\": 84\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/movie",
+							"protocol": "https",
+							"host": [
+								"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"movie"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"title\": \"Inception\",\n    \"description\": \"A skilled thief is given a chance at redemption if he can successfully perform an inception.\",\n    \"duration\": 148,\n    \"created_at\": \"2024-12-01T10:00:00Z\",\n    \"genres\": \"Sci-Fi, Thriller\",\n    \"poster\": \"https://example.com/posters/inception.jpg\",\n    \"trailerLink\": \"https://youtube.com/watch?v=YoHD9XEInc0\",\n    \"releaseDate\": \"2010-07-16T00:00:00Z\",\n    \"country\": \"USA\",\n    \"ageRestriction\": 13,\n    \"ratings\": {\n        \"imdb\": 8.8,\n        \"rottenTomatoes\": 87\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Sign in",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Sign in works\", () => {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Access token exists\", () => {",
+							"  pm.expect(pm.response.json()).to.have.property(\"access_token\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"simon@gmail.com\",\r\n    \"password\": \"ccc112ccc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/signin",
+					"protocol": "https",
+					"host": [
+						"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"signin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"simon@gmail.com\",\r\n    \"password\": \"ccc112ccc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/signin",
+							"protocol": "https",
+							"host": [
+								"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"signin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"response\": \"success\",\n    \"access_token\": \"112\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Sign in Invalid",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Invalid password credentials\", () => {",
+							"  pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"simon@gmail.com\",\r\n    \"password\": \"111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/signin",
+					"protocol": "https",
+					"host": [
+						"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"signin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"simon@gmail.com\",\r\n    \"password\": \"111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/signin",
+							"protocol": "https",
+							"host": [
+								"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"signin"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"response\": \"Invalid password\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Sign up",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Sign up works\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"simon1@gmail.com\",\r\n    \"password\": \"ccc112ccc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/signup",
+					"protocol": "https",
+					"host": [
+						"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"simon1@gmail.com\",\r\n    \"password\": \"ccc112ccc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/signup",
+							"protocol": "https",
+							"host": [
+								"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"response\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Sign up Exist profile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Sign up with existing email fails\", () => {",
+							"  pm.response.to.have.status(400);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"simon@gmail.com\",\r\n    \"password\": \"ccc112ccc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/signup",
+					"protocol": "https",
+					"host": [
+						"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"simon@gmail.com\",\r\n    \"password\": \"ccc112ccc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae.mock.pstmn.io/signup",
+							"protocol": "https",
+							"host": [
+								"3dd3a0ff-0b2d-4f49-8065-be6a9c90b7ae",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"response\": \"fail\"\n}"
+				}
+			]
+		}
+	]
+}
